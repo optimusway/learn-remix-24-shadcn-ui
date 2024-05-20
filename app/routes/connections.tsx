@@ -8,6 +8,9 @@ export default function Connections() {
       <header className="flex items-center justify-between">
         <div>
           <PageTitle>Connections</PageTitle>
+          <p className="text-muted-foreground text-sm">
+            Excel your game with connections to most powerful tools
+          </p>
         </div>
         <div className="flex gap-2">
           <Button>

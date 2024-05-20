@@ -47,7 +47,7 @@ export const questionSchema = z.object({
 
 export type Question = z.infer<typeof questionSchema>;
 
-export const tasks = [
+export const intents = [
   {
     id: "Q-8782",
     title:

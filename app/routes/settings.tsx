@@ -6,6 +6,9 @@ export default function Settings() {
       <header className="flex items-center justify-between">
         <div>
           <PageTitle>Settings</PageTitle>
+          <p className="text-muted-foreground text-sm">
+            Tune-in templates, business hours and other preferences
+          </p>
         </div>
         <div className="flex gap-2"></div>
       </header>

@@ -66,7 +66,7 @@ export const columns: ColumnDef<DataSource>[] = [
           {type?.value !== "default" && (
             <Badge variant="outline">{type?.label}</Badge>
           )}
-          <Button variant={"link"} className={cn("px-0 text-blue-600")}>
+          <Button variant={"link"} className={cn("text-brand-blue px-0")}>
             <span className="max-w-[500px] truncate">{row.original.href}</span>
             <ArrowTopRightOnSquareIcon className="ml-2 size-4" />
           </Button>
@@ -134,7 +134,7 @@ export const columns: ColumnDef<DataSource>[] = [
             status.value === "paused"
               ? "warning"
               : status.value === "failed"
-                ? "destructive"
+                ? "error"
                 : "secondary"
           }
           className={cn("flex w-24 items-center", "shadow-none")}

@@ -68,7 +68,7 @@ import {
 } from "~/components/ui/table";
 import { cn } from "~/lib/utils";
 import { columns } from "./columns";
-import { types, statuses, tasks } from "./data";
+import { types, statuses, intents } from "./data";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -478,6 +478,6 @@ export function DataTablePagination<TData>({
   );
 }
 
-export function QuestionsTable() {
-  return <DataTable data={tasks} columns={columns} />;
+export function IntentsTable() {
+  return <DataTable data={intents} columns={columns} />;
 }
