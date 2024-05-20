@@ -105,7 +105,7 @@ export default function App() {
           </header> */}
           <main className="flex flex-1 bg-gray-50/50">
             <div className="w-60 flex flex-col">
-              <section className="flex flex-col gap-4 px-3 pt-4">
+              <section className="flex flex-col gap-4 px-4 pt-5">
                 <div className="px-1 flex justify-start">
                   <LogoTypeColorful className="h-5" />
                 </div>
@@ -163,7 +163,7 @@ export default function App() {
                 </section> */}
               </nav>
 
-              <section className="px-4">
+              <section className="px-5">
                 <Card>
                   <CardHeader className="p-2 pt-0 md:px-3 md:py-3">
                     <CardDescription>
@@ -204,10 +204,10 @@ export default function App() {
                     Documentation
                   </Button>
                 </section>
-                <div className="px-2">
+                <div className="px-3">
                   <Separator className="my-2" />
                 </div>
-                <section className="flex justify-between items-center mt-2 px-2">
+                <section className="flex justify-between items-center mt-2 px-3">
                   <div className="flex items-center gap-2">
                     <Avatar className="h-7 w-7 rounded-md">
                       <AvatarImage src="https://github.com/optimusway.png" />
