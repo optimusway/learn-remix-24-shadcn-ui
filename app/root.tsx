@@ -8,7 +8,6 @@ import {
 } from "@remix-run/react";
 import {
   CheckIcon,
-  ChevronRightIcon,
   ChevronUpDownIcon,
   Cog6ToothIcon,
   HomeIcon,
@@ -17,23 +16,11 @@ import {
   PuzzlePieceIcon,
   PlusCircleIcon,
   ChatBubbleBottomCenterTextIcon,
-  ArrowTopRightOnSquareIcon,
   InboxIcon,
-  InboxStackIcon,
-  InboxArrowDownIcon,
-  QuestionMarkCircleIcon,
   MagnifyingGlassIcon,
-  MagnifyingGlassCircleIcon,
-  MagnifyingGlassPlusIcon,
-  MagnifyingGlassMinusIcon,
-  DocumentMagnifyingGlassIcon,
-  CreditCardIcon,
-  CogIcon,
-  ArrowRightStartOnRectangleIcon,
   EllipsisVerticalIcon,
   LifebuoyIcon,
   DocumentTextIcon,
-  LinkIcon,
 } from "@heroicons/react/16/solid";
 import { ReactNode, useState } from "react";
 import { Button } from "~/components/ui/button";
@@ -56,7 +43,6 @@ import "./globals.css";
 import { LinksFunction } from "@remix-run/node";
 import { LogoTypeColorful } from "~/components/logo";
 import { Separator } from "./components/ui/separator";
-import { QuestionMarkIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarImage } from "./components/ui/avatar";
 import {
   DropdownMenu,
@@ -64,12 +50,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./components/ui/dropdown-menu";
 import {
@@ -77,7 +59,6 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "./components/ui/card";
 
 export const links: LinksFunction = () => {
@@ -181,12 +162,13 @@ export default function App() {
                   </NavItem>
                 </section> */}
               </nav>
-              <section className="px-3">
+
+              <section className="px-4">
                 <Card>
                   <CardHeader className="p-2 pt-0 md:px-3 md:py-3">
-                    {/* <CardTitle>Smart search</CardTitle> */}
                     <CardDescription>
-                      Find company documents faster.
+                      Find company documents faster with{" "}
+                      <strong>Smart search</strong>.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-2 pt-0 md:p-3 md:pt-0">
@@ -197,7 +179,7 @@ export default function App() {
                 </Card>
               </section>
 
-              <section className="mt-auto px-3 pb-3">
+              <section className="mt-auto px-2 pb-3">
                 <section>
                   <Button
                     variant={"ghost"}
@@ -220,22 +202,19 @@ export default function App() {
                       }
                     />
                     Documentation
-                    {/* <LinkIcon
-                      className={
-                        "group-hover:text-foreground ml-2 h-4 w-4 text-muted-foreground"
-                      }
-                    /> */}
                   </Button>
                 </section>
-                <Separator className="my-2" />
-                <section className="flex justify-between items-center mt-2">
+                <div className="px-2">
+                  <Separator className="my-2" />
+                </div>
+                <section className="flex justify-between items-center mt-2 px-2">
                   <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="h-7 w-7 rounded-md">
                       <AvatarImage src="https://github.com/optimusway.png" />
                     </Avatar>
                     <div>
-                      <p className="text-sm leading-tight">optimusway</p>
-                      <p className="text-xs text-muted-foreground leading-tight">
+                      <p className="text-sm leading-none">Optimusway</p>
+                      <p className="text-xs text-muted-foreground leading-none">
                         alex@wikibot.pro
                       </p>
                     </div>
@@ -277,7 +256,7 @@ export default function App() {
                 </section>
               </section>
             </div>
-            <article className="border rounded-xl m-2 ml-0 w-full shadow-sm bg-white">
+            <article className="border rounded-xl m-2 ml-0 w-full shadow-sm bg-white overflow-hidden">
               <Outlet />
             </article>
           </main>

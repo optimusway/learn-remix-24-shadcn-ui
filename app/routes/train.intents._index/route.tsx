@@ -14,8 +14,8 @@ export const meta: MetaFunction = () => {
 
 export default function Training() {
   return (
-    <main className="flex flex-1 flex-col space-y-4 px-8 py-5">
-      <header className="flex items-center justify-between">
+    <main className="flex flex-1 flex-col">
+      <header className="flex items-center justify-between px-5 py-2 bg-gray-50 border-b">
         <div>
           <PageTitle>Intents</PageTitle>
           <p className="text-muted-foreground text-sm">
@@ -29,7 +29,7 @@ export default function Training() {
           </Button>
         </div>
       </header>
-      <section>
+      <section className="px-5 py-4">
         <IntentsTable />
       </section>
     </main>
