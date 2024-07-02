@@ -5,7 +5,7 @@ export function PageTitle({
   ...props
 }: ComponentPropsWithoutRef<"h1">) {
   return (
-    <h1 className="scroll-m-20 text-2xl font-semibold" {...props}>
+    <h1 className="scroll-m-20 text-xl font-semibold" {...props}>
       {children}
     </h1>
   );

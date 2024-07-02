@@ -11,16 +11,15 @@ import {
   ChevronUpDownIcon,
   Cog6ToothIcon,
   HomeIcon,
-  PresentationChartBarIcon,
   AcademicCapIcon,
   PuzzlePieceIcon,
   PlusCircleIcon,
   ChatBubbleBottomCenterTextIcon,
   InboxIcon,
   MagnifyingGlassIcon,
-  EllipsisVerticalIcon,
   LifebuoyIcon,
   DocumentTextIcon,
+  ChevronUpIcon,
 } from "@heroicons/react/16/solid";
 import { ReactNode, useState } from "react";
 import { Button } from "~/components/ui/button";
@@ -82,7 +81,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div className="bg-background flex min-h-screen flex-col">
+        <div className="bg-primary-foreground dark:bg-background flex min-h-screen flex-col">
           {/* <header className="flex items-center border-b px-3 py-4">
             <div className="flex w-full items-center">
               <div className="px-2">
@@ -103,7 +102,7 @@ export default function App() {
               </div>
             </div>
           </header> */}
-          <main className="flex flex-1 bg-gray-50/50">
+          <main className="flex flex-1">
             <div className="w-60 flex flex-col">
               <section className="flex flex-col gap-4 px-4 pt-5">
                 <div className="px-1 flex justify-start">
@@ -116,38 +115,38 @@ export default function App() {
               <nav className="flex flex-col gap-1 px-2 py-3">
                 <section>
                   <NavItem to="/inbox" icon={InboxIcon}>
-                    Inbox
+                    Инбокс
                   </NavItem>
                   <NavItem to="/chat" icon={ChatBubbleBottomCenterTextIcon}>
-                    Chat
+                    Чат
                   </NavItem>
                   <NavItem to="/search" icon={MagnifyingGlassIcon}>
-                    Search
+                    Поиск
                   </NavItem>
                 </section>
                 <section className="flex flex-col gap-1 mt-2">
-                  {/* <h3 className="font-medium text-xs text-muted-foreground uppercase px-3">
-                    Bot
-                  </h3> */}
+                  <h3 className="font-medium text-xs text-muted-foreground uppercase px-3">
+                    Бот
+                  </h3>
                   <NavItem to="/" icon={HomeIcon}>
-                    Overview
+                    Обзор
                   </NavItem>
                   {/* <NavItem to="" icon={AcademicCapIcon}>
                   Training
                 </NavItem> */}
                   <NavSection title="Training" icon={AcademicCapIcon}>
-                    <SubNavItem to="/train/intents">Question-answer</SubNavItem>
-                    <SubNavItem to="/train/kb">Knowledge base</SubNavItem>
-                    <SubNavItem to="/train/glossary">Glossary</SubNavItem>
+                    <SubNavItem to="/train/intents">FAQ</SubNavItem>
+                    <SubNavItem to="/train/kb">База знаний</SubNavItem>
+                    <SubNavItem to="/train/glossary">Глоссарий</SubNavItem>
                   </NavSection>
                   <NavItem to="/connections" icon={PuzzlePieceIcon}>
-                    Connections
+                    Интеграции
                   </NavItem>
-                  <NavItem to="/analytics" icon={PresentationChartBarIcon}>
+                  {/* <NavItem to="/analytics" icon={PresentationChartBarIcon}>
                     Analytics
-                  </NavItem>
+                  </NavItem> */}
                   <NavItem to="/settings" icon={Cog6ToothIcon}>
-                    Settings
+                    Настройки
                   </NavItem>
                 </section>
                 {/* <section className="flex flex-col gap-1 mt-4">
@@ -167,13 +166,12 @@ export default function App() {
                 <Card>
                   <CardHeader className="p-2 pt-0 md:px-3 md:py-3">
                     <CardDescription>
-                      Find company documents faster with{" "}
-                      <strong>Smart search</strong>.
+                      Обучайте бота при помощи <strong>Журнала</strong>.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-2 pt-0 md:p-3 md:pt-0">
                     <Button size="sm" className="w-full">
-                      Read the announcement
+                      Читать анонс
                     </Button>
                   </CardContent>
                 </Card>
@@ -190,7 +188,7 @@ export default function App() {
                         "group-hover:text-foreground mr-2 h-4 w-4 text-muted-foreground"
                       }
                     />
-                    Support
+                    Поддержка
                   </Button>
                   <Button
                     variant={"ghost"}
@@ -201,32 +199,36 @@ export default function App() {
                         "group-hover:text-foreground mr-2 h-4 w-4 text-muted-foreground"
                       }
                     />
-                    Documentation
+                    Документация
                   </Button>
                 </section>
                 <div className="px-3">
                   <Separator className="my-2" />
                 </div>
-                <section className="flex justify-between items-center mt-2 px-3">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-7 w-7 rounded-md">
-                      <AvatarImage src="https://github.com/optimusway.png" />
-                    </Avatar>
-                    <div>
-                      <p className="text-sm leading-none">Optimusway</p>
-                      <p className="text-xs text-muted-foreground leading-none">
-                        alex@wikibot.pro
-                      </p>
-                    </div>
-                  </div>
+                <section className="mt-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant={"ghost"} size={"icon"}>
-                        <EllipsisVerticalIcon
-                          className={cn(
-                            "text-muted-foreground hover:text-foreground h-4 w-4",
-                          )}
-                        />{" "}
+                      <Button variant={"ghost"} className="px-3 h-12 w-full">
+                        <div className="flex justify-between items-center w-full">
+                          <div className="flex items-center gap-2">
+                            <Avatar className="rounded-lg ring-1 ring-ring/20">
+                              <AvatarImage src="https://github.com/optimusway.png" />
+                            </Avatar>
+                            <div className="text-left">
+                              <p className="text-sm/5 font-medium_">
+                                optimusway
+                              </p>
+                              <p className="text-xs/5 text-muted-foreground font-normal">
+                                alex@wikibot.pro
+                              </p>
+                            </div>
+                          </div>
+                          <ChevronUpIcon
+                            className={cn(
+                              "text-muted-foreground hover:text-foreground h-4 w-4",
+                            )}
+                          />{" "}
+                        </div>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
@@ -238,17 +240,17 @@ export default function App() {
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
                         <DropdownMenuItem>
-                          Billing
+                          Биллинг
                           <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          Settings
+                          Настройки
                           <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        Log out
+                        Выйти
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -256,13 +258,18 @@ export default function App() {
                 </section>
               </section>
             </div>
-            <article className="border rounded-xl m-2 ml-0 w-full shadow-sm bg-white overflow-hidden">
+            <article className="border rounded-xl m-2 ml-0 w-full shadow-sm bg-background dark:bg-primary-foreground overflow-hidden">
               <Outlet />
             </article>
           </main>
         </div>
         <ScrollRestoration />
         <Scripts />
+        <script
+          src="https://widget.yourgpt.ai/script.js"
+          id="yourgpt-chatbot"
+          data-widget="91522386-1ad9-412d-bc79-1dc926315cb9"
+        ></script>
       </body>
     </html>
   );

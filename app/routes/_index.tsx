@@ -8,61 +8,69 @@ import {
 import { CopyIcon } from "@radix-ui/react-icons";
 import type { MetaFunction } from "@remix-run/node";
 import { ComponentPropsWithoutRef } from "react";
+import { Page } from "~/components/page";
+import { PageContent } from "~/components/page-content";
+import { PageHeader } from "~/components/page-header";
 import { PageTitle } from "~/components/page-title";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
   CardDescription,
+  CardFooter,
 } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
 
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Skillbox › Overview",
+      title: "Skillbox - Overview",
     },
   ];
 };
 
 export default function Index() {
   return (
-    <section className="flex flex-1 flex-col space-y-4 px-8 py-5">
-      <header className="flex items-center justify-between">
-        <div>
-          <PageTitle>Overview</PageTitle>
-        </div>
-        <div className="flex gap-2"></div>
-      </header>
-      <main className="space-y-4">
+    <Page>
+      <PageHeader
+        title="Dashboard"
+        desc="Get details and track key insights"
+        rightElement={null}
+      />
+      <PageContent className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <GeneralCard />
           <div className="grid gap-4 md:grid-cols-2">
             <StatCard
               title="Total questions"
               value={93838}
-              description="+20.1% from last month"
+              description="Month to date"
               icon={InboxStackIcon}
             />
             <StatCard
               title="Total answers"
-              value={42350}
-              description="+180.1% from last month"
-              icon={ChatBubbleBottomCenterTextIcon}
+              value={51488}
+              description="Number of any bot answer"
+              icon={CircleStackIconOutline}
             />
             <StatCard
               title="L1 answers"
               value={12234}
-              description="+19% from last month"
+              description={`${Number(12234 / 93838).toLocaleString([], {
+                style: "percent",
+              })} L1 rate`}
               icon={AcademicCapIconOutline}
             />
             <StatCard
-              title="Credits remain"
-              value={1986}
-              description="-21 since today"
-              icon={CircleStackIconOutline}
+              title="Escalation rate"
+              value={Number(1 - 42350 / 93838).toLocaleString([], {
+                style: "percent",
+              })}
+              description={`${Number(42350).toLocaleString()} missed answers`}
+              icon={ChatBubbleBottomCenterTextIcon}
             />
           </div>
         </div>
@@ -73,6 +81,7 @@ export default function Index() {
                 name: "https://wikibot.pro",
                 type: "Default",
                 chunkCount: 210,
+                isLoading: true,
               },
               { name: "Wikibot API spec", type: "Custom", chunkCount: 5 },
               { name: "Custom data", type: "Custom", chunkCount: 12 },
@@ -84,8 +93,8 @@ export default function Index() {
             integrations={["Telegram", "Usedesk"]}
           />
         </div>
-      </main>
-    </section>
+      </PageContent>
+    </Page>
   );
 }
 
@@ -107,7 +116,7 @@ function StatCard(props: {
             ? Number(props.value).toLocaleString()
             : props.value}
         </div>
-        <p className="text-muted-foreground text-xs">{props.description}</p>
+        <p className="text-muted-foreground text-sm">{props.description}</p>
       </CardContent>
     </Card>
   );
@@ -119,24 +128,29 @@ function GeneralCard(props: ComponentPropsWithoutRef<typeof Card>) {
       <CardHeader>
         <CardTitle>Skillbox LMS</CardTitle>
         <CardDescription className="flex items-center gap-2 text-sm">
-          <span>4e124181-e59f-43b7-8fa2-a8dcca0e8315</span>
+          <span className="">4e124181-e59f-43b7-8fa2-a8dcca0e8315</span>
           <CopyIcon className="h-4 w-4" />
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <CardRow label="Algo" desc="Current algorithm" value="WB_13" />
+        {/* <CardRow label="Algo" desc="Current algorithm" value="WB_13" /> */}
         <CardRow
           label="Plan"
-          desc="Subscription status"
-          value={<Badge variant="secondary">Free</Badge>}
+          desc="Current package"
+          value={<Badge variant="outline">Free</Badge>}
+        />
+        <CardRow
+          label="Credits"
+          desc="Credits remaining"
+          value={"74 out of 500"}
         />
         <CardRow label="Owner" desc="Created by" value="optimusway" />
         <CardRow
           label="Created at"
-          desc="Exact date and time"
+          desc="Bot creation date"
           value={new Date().toLocaleString(["en-US"], {
             dateStyle: "short",
-            timeStyle: "short",
+            // timeStyle: "short",
           })}
         />
       </CardContent>
@@ -147,13 +161,18 @@ function GeneralCard(props: ComponentPropsWithoutRef<typeof Card>) {
 function DatasetCard(
   props: ComponentPropsWithoutRef<typeof Card> & {
     icon: typeof HomeIcon;
-    datasources: { name: string; type: string; chunkCount: number }[];
+    datasources: {
+      name: string;
+      type: string;
+      chunkCount: number;
+      isLoading?: boolean;
+    }[];
   },
 ) {
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Dataset</CardTitle>
+        <CardTitle>Data sources</CardTitle>
         <CardDescription>
           You have {props.datasources.length} datasources connected.
         </CardDescription>
@@ -165,7 +184,12 @@ function DatasetCard(
             className="flex items-center justify-between space-x-2"
           >
             <div className="flex flex-col space-y-1 text-sm leading-none">
-              <p className="font-medium">{d.name}</p>
+              <div className="flex gap-2 items-center">
+                <p className="font-medium">{d.name}</p>
+                {d.isLoading ? (
+                  <span className="flex h-2 w-2 rounded-full bg-amber-500" />
+                ) : null}
+              </div>
               <p className="text-muted-foreground text-sm capitalize leading-snug">
                 {d.type}
               </p>
@@ -177,6 +201,11 @@ function DatasetCard(
           </div>
         ))}
       </CardContent>
+      <CardFooter>
+        <Button variant="outline" className="w-full">
+          Manage data sources
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
@@ -188,11 +217,11 @@ function IntegrationsCard(
   },
 ) {
   return (
-    <Card {...props}>
+    <Card className="flex flex-col" {...props}>
       <CardHeader>
-        <CardTitle>Integrations</CardTitle>
+        <CardTitle>Connections</CardTitle>
         <CardDescription>
-          You have {props.integrations.length} integrations enabled.
+          You have {props.integrations.length} systems connected.
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
@@ -208,6 +237,11 @@ function IntegrationsCard(
           </div>
         ))}
       </CardContent>
+      <CardFooter className="mt-auto">
+        <Button variant="outline" className="w-full">
+          Configure connections
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

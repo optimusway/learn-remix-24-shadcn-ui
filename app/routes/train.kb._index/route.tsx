@@ -1,9 +1,11 @@
 import { type MetaFunction } from "@remix-run/node";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { DataSourcesTable } from "~/components/kb/data-table";
-import { PageTitle } from "~/components/page-title";
 import { Button } from "~/components/ui/button";
 import { Link } from "@remix-run/react";
+import { PageHeader } from "~/components/page-header";
+import { PageContent } from "~/components/page-content";
+import { Page } from "~/components/page";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,26 +17,22 @@ export const meta: MetaFunction = () => {
 
 export default function Sources() {
   return (
-    <main className="w-full space-y-4 px-8 py-5">
-      <header className="flex items-center justify-between">
-        <div>
-          <PageTitle>Knowledge base</PageTitle>
-          <p className="text-muted-foreground text-sm">
-            Add various data sources as a general knowledge for the bot
-          </p>
-        </div>
-        <div>
+    <Page>
+      <PageHeader
+        title="Data sources"
+        desc="Feed the knowledge from various data sources"
+        rightElement={
           <Link to="add-source">
             <Button>
               <PlusIcon className="mr-2 h-4 w-4" />
               Add source
             </Button>
           </Link>
-        </div>
-      </header>
-      <section>
+        }
+      />
+      <PageContent>
         <DataSourcesTable />
-      </section>
-    </main>
+      </PageContent>
+    </Page>
   );
 }
